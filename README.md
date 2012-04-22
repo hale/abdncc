@@ -1,4 +1,0 @@
-abdncc
-======
-
-Aberdeen Course Catalogue
