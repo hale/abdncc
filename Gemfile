@@ -24,6 +24,8 @@ end
 
 group :test, :development do
     gem 'rspec-rails'
+    gem 'capybara'
+    gem 'launchy'
     gem 'guard-rspec'
     gem 'factory_girl_rails'
     gem 'database_cleaner'
