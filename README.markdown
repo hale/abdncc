@@ -9,6 +9,7 @@ This project is for _CS2512 Advanced Web Application Development_.
 
 
 
-* Must be test driven
-* Solo project
+* Must be test driven.
+* Must be deployed to heroku.
+* Solo project.
 
