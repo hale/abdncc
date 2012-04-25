@@ -1,5 +1,7 @@
 class Course < ActiveRecord::Base
   attr_accessible :assessment, :ccode, :coordinator, :credits, :department, :description, :level, :name, :note, :prereq, :subject
+  belongs_to :subject
+  
 end
 
 # == Schema Information
@@ -16,9 +18,9 @@ end
 #  description :text
 #  assessment  :text
 #  level       :integer
-#  subject     :string(255)
 #  department  :string(255)
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
+#  subject_id  :integer
 #
 

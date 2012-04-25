@@ -197,6 +197,11 @@ GEM
       ffi (~> 1.0)
       multi_json (~> 1.0)
       rubyzip
+    shoulda (3.0.1)
+      shoulda-context (~> 1.0.0)
+      shoulda-matchers (~> 1.0.0)
+    shoulda-context (1.0.0)
+    shoulda-matchers (1.0.0)
     sketches (0.1.1)
     spoon (0.0.1)
     sprockets (2.1.2)
@@ -244,5 +249,6 @@ DEPENDENCIES
   randumb
   rspec-rails
   sass-rails (~> 3.2.3)
+  shoulda
   thin
   uglifier (>= 1.0.3)

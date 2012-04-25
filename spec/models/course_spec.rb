@@ -1,11 +1,14 @@
 require 'spec_helper'
 
 describe Course do
+  it { should belong_to(:subject) }
+  
   let(:course) { FactoryGirl.create(:course)}
 
   subject { course }
 
   it { should be_valid }
+
 
   describe "the course attributes" do
     before { course.save }
@@ -42,9 +45,9 @@ end
 #  description :text
 #  assessment  :text
 #  level       :integer
-#  subject     :string(255)
 #  department  :string(255)
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
+#  subject_id  :integer
 #
 

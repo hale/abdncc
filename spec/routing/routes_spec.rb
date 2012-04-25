@@ -10,11 +10,24 @@ describe "routing to courses" do
       :controller => "courses",
       :action =>     "show",
       :id => "#{course.id}"
-    )
+      )
   end
 
-  it "routes course_path(:id) to course#show" do
-    course_path(course.id).should == "/courses/#{course.id}"
+  it "routes /courses to courses#index" do
+    { :get => "/courses"}.should route_to(
+      :controller => "courses",
+      :action => "index"
+      )
+  end
+
+  describe "named routes" do
+    it "routes course_path(:id) to course#show" do
+      course_path(course.id).should == "/courses/#{course.id}"
+    end
+
+    it "routes courses_path to courses#index" do
+      courses_path.should == "/courses"
+    end
   end
 
 end

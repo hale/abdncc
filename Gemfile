@@ -8,9 +8,7 @@ gem 'randumb' # lets you get random records efficiently
 # for creating sample database on the server
 gem 'faker'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
+# the postgresql gem
 gem 'pg'
 
 
@@ -24,16 +22,25 @@ end
 
 group :test, :development do
     gem 'rspec-rails'
+    gem 'shoulda', :require => false
     gem 'capybara'
+    # enables 'save_and_open_page'
     gem 'launchy'
+    # guard auto runs test suite on file change
     gem 'guard-rspec'
     gem 'factory_girl_rails'
     gem 'database_cleaner'
     gem 'railroady'
+    # puts attributes as a comment for each <model>.rb
     gem 'annotate', :git => 'http://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
+    # gives some nice tools for rails console.
     gem 'irbtools-more', :require => false
     # gem 'ruby-debug19', :require => 'ruby-debug'
 end
+
+# group :test do
+#   gem 'cucumber-rails'
+# end
 
 gem 'jquery-rails'
 

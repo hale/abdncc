@@ -4,8 +4,9 @@ describe CoursesController do
   let(:course) { FactoryGirl.create(:course) }
   subject { course }
 
+  before{ course.save }
+
   describe "GET show" do
-    before{ course.save }
 
     it "assigns the course to @course" do
       get :show, :id => course.id
@@ -15,11 +16,10 @@ describe CoursesController do
   end
 
   describe "GET index" do
-    before{ course.save }
 
     it "assigns all courses to @courses" do
       get :index
-      assigns(:courses).should eq([course])
+      assigns(:courses).should include(course)
     end
   end    
 
