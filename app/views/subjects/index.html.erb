@@ -1,0 +1,10 @@
+<% provide(:title, 'Catalogue of Courses (Undergraduate)') %>
+
+<h2>Course Index By Subject</h2>
+<ul class="subjects">
+  <% @subjects.each do |subj| %>
+  <li class="subject">
+    <%= link_to( subj.name, subject_path(subj) )%> (<%= subj.code %>)
+  </li>
+  <% end -%>
+</ul>

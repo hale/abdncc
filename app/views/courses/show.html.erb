@@ -1,7 +1,6 @@
 <% provide(:title, @course.name) %>
 
-<h3>Name</h3>
-<p><%= @course.name %></p>
+<h2><%= @course.name %></h2>
 
 <h3>Course Code</h3>
 <p><%= @course.ccode %></p>
@@ -28,8 +27,10 @@
 <p><%= @course.level %></p>
 
 <h3>Subject</h3>
-<p><%= @course.subject.name %></p>
+<p><%= link_to( @course.subject.name, subject_path(@course.subject) ) %></p>
 
 <h3>Department</h3>
 <p><%= @course.department %></p>
+
+
 

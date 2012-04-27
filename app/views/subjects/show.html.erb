@@ -1,0 +1,12 @@
+<% provide(:title, @subject.name) %>
+
+<h1><%= @subject.name %></h1>
+
+<!-- render all the courses for this subject -->
+<ul class="courses">
+  <% @subject.courses.each do |course| %>
+  <li class="course">
+    <%= render course %>
+  </li>  
+  <% end -%>
+</ul>

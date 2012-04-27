@@ -2,6 +2,10 @@ class Subject < ActiveRecord::Base
   attr_accessible :code, :courses, :name
   has_many :courses, :dependent => :destroy
 
+  def to_s
+    self.name
+  end
+
 end
 
 # == Schema Information

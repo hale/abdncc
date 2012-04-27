@@ -2,9 +2,10 @@ Abdncc::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  
-  match 'courses/:id' => 'courses#show'
+  root :to => 'subjects#index'
+
   resources :courses
+  resources :subjects
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

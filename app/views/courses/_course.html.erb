@@ -1,0 +1,23 @@
+<h2><%= link_to( course.name, course_path(course) ) %></h2>
+<ul>
+  <strong>Course Code</strong>
+  <li><%= course.ccode %></li>
+  <strong>Credits</strong>
+  <li><%= course.credits %></li>
+  <strong>Course Coordinator</strong>
+  <li><%= course.coordinator %></li>
+  <strong>Pre-requesites</strong>
+  <li><%= course.prereq %></li>
+  <strong>Note</strong>
+  <li><%= course.note %></li>
+  <strong>Description</strong>
+  <li><%= course.description %></li>
+  <strong>Assessment</strong>
+  <li><%= course.assessment %></li>
+  <strong>Level</strong>
+  <li><%= course.level %></li>
+  <strong>Department</strong>
+  <li><%= course.department %></li>
+  <strong>Subject</strong>
+  <li><%= course.subject %></li>
+</ul>
