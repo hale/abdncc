@@ -16,6 +16,23 @@ describe "Subjects" do
       end
     end
 
+    describe "internal page navigation" do
+      subject { page }
+      it { should have_selector ".contents"}
+
+      it "links to Level 1 courses" do
+        pending "pending implementing the level model"
+        within ".contents" do
+          click_link "Level One"
+          # current_url.should == subject_path( subj ) + '#level1'
+        end
+      end
+
+      it "doesn't link to level 4 if the subject only has courses up to level 3" do
+        pending "pending implementing the level model"
+      end
+    end
+
     it "displays a list of courses" do
       page.should have_selector '.courses'
     end
@@ -42,7 +59,7 @@ describe "Subjects" do
 
   end
 
-  describe "index.html.erb the list of subjects" do
+  describe "index.html.erb the list of all subjects" do
     before { visit subjects_path }
     subject { page }
 

@@ -1,6 +1,13 @@
 <% provide(:title, @subject.name) %>
 
 <h1><%= @subject.name %></h1>
+<ul class="contents">
+  <h2>
+    <li>
+      <%= link_to( "Level One", subject_path(@subject, :anchor => 'level1') ) %>
+    </li>
+  </h2>
+</ul>
 
 <!-- render all the courses for this subject -->
 <ul class="courses">

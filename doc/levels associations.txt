@@ -1,0 +1,9 @@
+The level page should show a list of subjects for that level.  Clicking the subject should from that point should show a list of courses for that level.
+
+A level has many courses
+A course belongs to a level
+
+A level has many subjects
+A subject has many levels
+
+
