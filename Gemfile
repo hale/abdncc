@@ -29,13 +29,15 @@ group :test, :development do
     # guard auto runs test suite on file change
     gem 'guard-rspec'
     gem 'factory_girl_rails'
-    gem 'railroady'
     # puts attributes as a comment for each <model>.rb
     gem 'annotate', :git => 'http://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
     # gives some nice tools for rails console.
     gem 'irbtools-more', :require => false
     # gem 'ruby-debug19', :require => 'ruby-debug'
     gem 'guard-cucumber'
+    gem "rails-erd"
+    gem 'therubyracer'
+    gem 'libnotify'
 end
 
 group :test do

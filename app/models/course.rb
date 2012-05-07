@@ -1,6 +1,14 @@
 class Course < ActiveRecord::Base
   attr_accessible :assessment, :ccode, :coordinator, :credits, :department, :description, :level, :name, :note, :prereq, :subject
   belongs_to :subject
+
+  def rand_ccode
+	  ccode = ''
+	  2.times { ccode << ('A'..'Z').to_a[rand(0..25)].to_s }
+	  ccode << ' '
+	  4.times { ccode << rand(1..9).to_s }
+	  ccode
+  end
   
 end
 

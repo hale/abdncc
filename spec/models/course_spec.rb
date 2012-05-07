@@ -4,6 +4,10 @@ describe Course do
   it { should belong_to(:subject) }
   
   let(:course) { FactoryGirl.create(:course)}
+  # let(:courses) { FactoryGirl.create(:rand_course, 20)}
+  # let(:subject) { FactoryGirl.create(:subject)}
+  # let(:subjects) { FactoryGirl.create(:rand_subject, 5)}
+
 
   subject { course }
 
@@ -25,6 +29,15 @@ describe Course do
     it { should respond_to(:subject)}
     it { should respond_to(:department)}
   end
+
+  describe 'filtering courses based on level' do
+  end
+
+  describe "sample ccode" do
+    subject { course.rand_ccode }
+    its(:length) { should == 7 }
+  end
+    
 
   
 

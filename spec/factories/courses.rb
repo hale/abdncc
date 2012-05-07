@@ -14,4 +14,20 @@ FactoryGirl.define do
     subject     
     department  "School of Language and Literature"
   end
+
+  factory :rand_course do
+    name        Faker::Lorem.sentence.upcase
+    credits     [15, 20, 30, 60].sample
+    coordinator Faker::Name.name
+    prereq      Faker::Lorem.sentence
+    note        Faker::Lorem.sentence(15)
+    description Faker::Lorem.paragraph(10)
+    assessment  Faker::Lorem.paragraph
+    level       rand(1..4)  
+    department  "School of #{Faker::Lorem.words.first.titlecase}"
+    association :subject, factory: :rand_subject   
+    after_build do |subj|
+        subj.ccode = subj.rand_ccode
+    end
+  end
 end

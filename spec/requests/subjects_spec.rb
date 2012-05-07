@@ -21,7 +21,7 @@ describe "Subjects" do
       it { should have_selector ".contents"}
 
       it "links to Level 1 courses" do
-        pending "pending implementing the level model"
+        pending "[Course content page]"
         within ".contents" do
           click_link "Level One"
           # current_url.should == subject_path( subj ) + '#level1'
@@ -29,7 +29,7 @@ describe "Subjects" do
       end
 
       it "doesn't link to level 4 if the subject only has courses up to level 3" do
-        pending "pending implementing the level model"
+        pending "[Course content page]"
       end
     end
 

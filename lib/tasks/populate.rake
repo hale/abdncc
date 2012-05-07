@@ -1,0 +1,75 @@
+namespace :db do
+  desc "Fill in the database with pretend users"
+  task populate: :environment do
+    make_courses
+    make_subjects
+    link_subjects_courses
+  end
+end
+
+def self.gen_ccode
+  ccode = ''
+  2.times { ccode << ('A'..'Z').to_a[rand(0..25)].to_s }
+  ccode << ' '
+  4.times { ccode << rand(1..9).to_s }
+  ccode
+end
+
+def make_courses
+  Course.create(name:        "ARABIC FOR BEGINNERS 3",
+                ccode:       "AR 2002",
+                credits:     15,
+                coordinator: "Dr G Sharman",
+                prereq:      "Normally AR 1501 or permission of Head of School",
+                note:        "Please note, this course is designed for beginners to Arabic and is not available to native speakers.",
+                description: "Written and spoken Arabic. Introduction to very basic cultural phenomena.Reading passages.Writing exercises.Translation exercises.Role play.Dialogue.Readings and discussions about Arabic culture. 3 one-hour classes per week 1 tutorial per week. 1st attempt: Course work (60%) Examination (40% = Oral 10%, written 30%). Resit: 1 two-hour written examination (100%).",
+                assessment:  "Four written assessments, in weeks 3, 6, 8 and 11. The above assessments are given CAS marks, and written or verbal feedback is also given. Additional informal feedback on performance and workshop participation is also given.",
+                level:       2,
+                department:  "School of Language and Literature"
+                # subject added after subjects created
+  )
+  99.times do
+    Course.create(name:        Faker::Lorem.sentence.upcase,
+                  ccode:       self.gen_ccode,
+                  credits:     [15, 20, 30, 60].sample,
+                  coordinator: Faker::Name.name,
+                  prereq:      Faker::Lorem.sentence,
+                  note:        Faker::Lorem.sentence(15),
+                  description: Faker::Lorem.paragraph(10),
+                  assessment:  Faker::Lorem.paragraph,
+                  level:       rand(1..4),
+                  department:  "School of #{Faker::Lorem.words.first.titlecase}"
+                  # subject added after subjects created
+    )
+  end
+end
+
+def make_subjects
+  courses = Course.all
+  Subject.create(name: 'Arabic',
+                 code: 'AR',
+                 courses: [Course.find_by_name('ARABIC FOR BEGINNERS 3')]
+                 )
+  19.times do
+    name = Faker::Lorem.words.first.titlecase
+    Subject.create(name: name,
+                   code: name[0..1].upcase,
+                   courses: courses.sample(rand(4..20))
+                   )
+  end
+end
+
+def link_subjects_courses
+  Course.all.each do |course|
+    # assign a random subject to this course (uses randumb gem)
+    course.update_attributes( :subject => Subject.random)
+  end
+end
+
+
+
+
+
+
+
+
