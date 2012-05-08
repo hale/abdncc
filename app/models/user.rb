@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :courses
   has_many :bookmarks, :class_name => 'Course'
-  attr_accessible :email, :name, :password_digest, :status
+  attr_accessible :email, :name, :password, :password_digest, :status
 
   validates_presence_of :password, :on => :create
   validates_presence_of :email, :on => :create

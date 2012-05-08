@@ -1,0 +1,5 @@
+commit 73533fb797d2e60896a8ab0ef907c48c4dbdcaae
+Author: Philip Hale <p.hale.09@aberdeen.ac.uk>
+Date:   Tue May 8 01:42:11 2012 +0100
+
+    mid way through implementing the user model and user signup.  THREE MINUTE mark into the rails casts video ep270 2:56.  TODO: create a sign up form at app.views.users.new.html.erb TODO: finish the video TODO: write a test for the create method in the users controller.

@@ -92,6 +92,13 @@ describe "routing to users" do
       )
   end
 
+  it "routes /users/new to users#new" do
+    { :get => "/users/new" }.should route_to(
+      :controller => "users",
+      :action     => "new"
+      )
+  end
+
   describe "named routes" do
     it "routes user_path(:id) to users#show" do
       user_path(user.id).should == "/users/#{user.id}"
@@ -99,6 +106,10 @@ describe "routing to users" do
 
     it "routes users_path to users#index" do
       users_path.should == "/users"
+    end
+
+    it "routes new_user_path ro users#new" do
+      new_user_path.should == "/users/new"
     end
     
   end

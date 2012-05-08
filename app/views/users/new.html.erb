@@ -1,0 +1,19 @@
+<% provide(:title, "Signup form") %>
+
+<%= form_for User.new do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Oops!</h2>
+      <h3>Your password is too short, or there might be a typo in your email address</h3>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end -%>
+      </ul>
+    </div>
+  <% end -%>
+
+  <%= f.text_field :email, :placeholder => "Email" %>
+  <%= f.text_field :password, :placeholder => "Password" %>
+  <%= f.button "Sign up" %>
+<% end -%>  

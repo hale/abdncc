@@ -1,0 +1,10 @@
+<% provide(:title, @user.name) %>
+<!-- flash block pending bootstrap integration -->
+
+<h2><%= @user.name %></h2>
+
+<% @user.courses.each do |course| %>
+  <ul class="courses">
+    <li class="course"><%= render course %></li>
+  </ul>
+<% end -%>

@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20120507230336) do
     t.integer  "bookmarks_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.string   "status"
+    # t.string   "status"
   end
 
   add_index "users", ["bookmarks_id"], :name => "index_users_on_bookmarks_id"
