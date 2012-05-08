@@ -10,7 +10,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :rand_subject do
+  factory :rand_subject, class: Subject do
   	name Faker::Lorem.words.first.titlecase
   	after_build do |subject|
   		subject.code = subject.name[0..1].upcase

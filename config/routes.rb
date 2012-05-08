@@ -6,6 +6,7 @@ Abdncc::Application.routes.draw do
 
   resources :courses
   resources :subjects
+  resources :users
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

@@ -70,3 +70,39 @@ describe "static pages" do
       :action     => "index")
   end
 end
+
+describe "routing to users" do
+  let(:user) { FactoryGirl.create :user }
+  subject { user }
+  it { should be_valid }
+  before { user.save }
+
+  it "routes /user/:id to users#show" do
+    { :get => "/users/#{user.id}"}.should route_to(
+      :controller => "users",
+      :action => 'show',
+      :id => "#{user.id}"
+      )
+  end
+
+  it "routes /users to users#index" do
+    { :get => "/users" }.should route_to(
+      :controller => 'users',
+      :action => 'index'
+      )
+  end
+
+  describe "named routes" do
+    it "routes user_path(:id) to users#show" do
+      user_path(user.id).should == "/users/#{user.id}"
+    end
+
+    it "routes users_path to users#index" do
+      users_path.should == "/users"
+    end
+    
+  end
+
+
+end
+

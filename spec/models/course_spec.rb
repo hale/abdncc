@@ -62,5 +62,6 @@ end
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
 #  subject_id  :integer
+#  user_id     :integer
 #
 
