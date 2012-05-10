@@ -21,6 +21,13 @@ describe "Users" do
       end
 
       context "invalid information" do
+        it "displays the errors to the user" do
+          fill_in 'user_email', :with => 'user@example@example.com'
+          fill_in 'user_password', :with => 'foo'
+          click_button 'Sign up'
+          # current_path.should == new_user_path
+          page.should have_selector('.error_messages')
+        end
       end
     end
 
@@ -35,7 +42,7 @@ describe "Users" do
     describe "user attributes" do
       subject{ page.body }
       it { should have_content user.name }
-      it { should have_content user.type }
+      it { should have_content user.status }
 
       context "the list of courses this user has taken / is taking" do
         it { should have_selector '.courses' }

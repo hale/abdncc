@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120507230336) do
+ActiveRecord::Schema.define(:version => 20120510194832) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,11 @@ ActiveRecord::Schema.define(:version => 20120507230336) do
     t.integer  "user_id"
   end
 
+  create_table "courses_users", :id => false, :force => true do |t|
+    t.integer "course_id"
+    t.integer "user_id"
+  end
+
   create_table "subjects", :force => true do |t|
     t.string   "name"
     t.string   "code"
@@ -41,16 +46,15 @@ ActiveRecord::Schema.define(:version => 20120507230336) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "type"
     t.string   "password_digest"
-    t.integer  "courses_id"
-    t.integer  "bookmarks_id"
+    t.integer  "course_id"
+    t.integer  "bookmark_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    # t.string   "status"
+    t.string   "status"
   end
 
-  add_index "users", ["bookmarks_id"], :name => "index_users_on_bookmarks_id"
-  add_index "users", ["courses_id"], :name => "index_users_on_courses_id"
+  add_index "users", ["bookmark_id"], :name => "index_users_on_bookmark_id"
+  add_index "users", ["course_id"], :name => "index_users_on_course_id"
 
 end

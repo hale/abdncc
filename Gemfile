@@ -41,6 +41,9 @@ group :test, :development do
     gem "rails-erd"
     gem 'therubyracer'
     gem 'libnotify'
+    # speeds up tests (useful with guard)
+    gem 'spork-rails'
+    # gem 'guard-spork'
 end
 
 group :test do

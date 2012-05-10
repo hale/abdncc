@@ -1,12 +1,15 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  has_many :courses
+  has_and_belongs_to_many :courses
   has_many :bookmarks, :class_name => 'Course'
-  attr_accessible :email, :name, :password, :password_digest, :status
+  attr_accessible :email, :name, :status, :password, :status, :courses, :bookmarks
 
   validates_presence_of :password, :on => :create
   validates_presence_of :email, :on => :create
+  validates :password, :length => { :in => 6..20 }
+  validates_format_of :email, :with => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+  validates_uniqueness_of :email
 end
 
 # == Schema Information
@@ -16,10 +19,9 @@ end
 #  id              :integer         not null, primary key
 #  name            :string(255)
 #  email           :string(255)
-#  type            :string(255)
 #  password_digest :string(255)
-#  courses_id      :integer
-#  bookmarks_id    :integer
+#  course_id       :integer
+#  bookmark_id     :integer
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null
 #  status          :string(255)

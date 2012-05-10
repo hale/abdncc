@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Course do
   it { should belong_to(:subject) }
+  it { should have_and_belong_to_many :users }
   
   let(:course) { FactoryGirl.create(:course)}
   # let(:courses) { FactoryGirl.create(:rand_course, 20)}

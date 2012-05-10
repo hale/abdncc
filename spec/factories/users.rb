@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :user do
     name "Philip Hale"
-    email "p.hale.09@aberdeen.ac.uk"
+    email # generates an email sequence.  see sequences.rb
     status "3rd Year Computing Science BSc"
     password "foobar"
     after_build do |user|

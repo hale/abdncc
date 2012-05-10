@@ -1,22 +1,63 @@
 <% provide(:title, @subject.name) %>
 
-<!-- Page header -->
-<h1><%= @subject.name %></h1>
-
 <!-- Contents -->
-<ul class="contents">
-  <h2>
+<!-- THIS SECTION IS UNTESTED - TODO: FIND A WAY TO TEST THIS -->
+<% content_for :sidebar do %>
+<div class="contents">
+  <li class='nav-header'>Jump to Levels</li>
     <li>
       <%= link_to( "Level One", subject_path(@subject, :anchor => 'level1') ) %>
     </li>
-  </h2>
-</ul>
+    <li>
+      <%= link_to( "Level Two", subject_path(@subject, :anchor => 'level2') ) %>
+    </li>
+    <li>
+      <%= link_to( "Level Three", subject_path(@subject, :anchor => 'level3') ) %>
+    </li>
+    <li>
+      <%= link_to( "Level Four", subject_path(@subject, :anchor => 'level4') ) %>
+    </li>
+</div>
+<% end -%>
+
+
+
+<!-- Page header -->
+<h1><%= @subject.name %></h1>
 
 <!-- Course list for this subject -->
-<% @subject.courses.each do |course| %>
 <ul class="courses">
+
+<!-- Level 1 -->
+<a name='level1'><h2>Level One <small><a href="#top">(top)</a></small></h2></a>
+<% @subject.courses_where(:level => 1).each do |course| %>
   <li class="course">
     <%= render course %>
-  </li>  
-</ul>
-<% end -%>
+  </li>
+<% end -%>  
+
+<!-- Level 2 -->
+<a name='level2'><h2>Level Two <small><a href="#top">(top)</a></small></h2></a>
+<% @subject.courses_where(:level => 2).each do |course| %>
+  <li class="course">
+    <%= render course %>
+  </li>
+<% end -%>  
+
+<!-- Level 3 -->
+<a name='level3'><h2>Level Three <small><a href="#top">(top)</a></small></h2></a>
+<% @subject.courses_where(:level => 3).each do |course| %>
+  <li class="course">
+    <%= render course %>
+  </li>
+<% end -%>  
+
+<!-- Level 4 -->
+<a name='level4'><h2>Level Four <small><a href="#top">(top)</a></small></h2></a>
+<% @subject.courses_where(:level => 4).each do |course| %>
+  <li class="course">
+    <%= render course %>
+  </li>
+<% end -%>  
+
+</ul><!-- END COURSE LIST -->

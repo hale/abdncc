@@ -16,21 +16,28 @@ describe "Subjects" do
       end
     end
 
+    # I CANNOT FIND A WAY TO TEST INTERNAL ANCHOR TAGS
     describe "internal page navigation" do
-      subject { page }
-      it { should have_selector ".contents"}
+      
+      subject { page.find('.contents') }
+      it { should have_link('Level One') }
+      it { should have_link('Level Two') }
+      it { should have_link('Level Three') }
+      it { should have_link('Level Four') }
 
-      it "links to Level 1 courses" do
-        pending "[Course content page]"
-        within ".contents" do
-          click_link "Level One"
-          # current_url.should == subject_path( subj ) + '#level1'
-        end
-      end
 
-      it "doesn't link to level 4 if the subject only has courses up to level 3" do
-        pending "[Course content page]"
-      end
+    #   it "links to Level 1 courses" do
+    #     within ".contents" do
+    #       click_link "Level One"
+    #       # current_url.should == subject_path( subj ) + '#level1'
+    #       puts
+    #       puts
+    #       puts current_path
+    #       puts
+    #       puts
+    #     end
+    #   end
+
     end
 
     it "displays a list of courses" do

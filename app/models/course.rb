@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
   attr_accessible :assessment, :ccode, :coordinator, :credits, :department, :description, :level, :name, :note, :prereq, :subject
-  belongs_to :subject
+  belongs_to :subject, :inverse_of => :courses
+  has_and_belongs_to_many :users
 
   def rand_ccode
 	  ccode = ''

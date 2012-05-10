@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Subject do
-  it { should  have_many(:courses).dependent(:destroy) }
+  it { should  have_many(:courses) }
 
   let(:subj) { FactoryGirl.create(:subject)}
   before { subj.save }
@@ -17,6 +17,31 @@ describe Subject do
     subject { subj.to_s }
     it { should == subj.name }
   end
+
+  describe "returning collections of courses based on level" do
+    it "groups level 1 courses" do
+      subj.courses_where(:level => 1).each do |course|
+        course.level.should == 1
+      end
+    end
+    it "groups level 2 courses" do
+      subj.courses_where(:level => 2).each do |course|
+        course.level.should == 2
+      end
+    end
+    it "groups level 3 courses" do
+      subj.courses_where(:level => 3).each do |course|
+        course.level.should == 3
+      end
+    end
+    it "groups level 4 courses" do
+      subj.courses_where(:level => 4).each do |course|
+        course.level.should == 4
+      end
+    end
+
+  end
+
 end
 
 # == Schema Information

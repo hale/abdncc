@@ -1,10 +1,16 @@
 class Subject < ActiveRecord::Base
   attr_accessible :code, :courses, :name
-  has_many :courses, :dependent => :destroy
+  has_many :courses, :inverse_of => :subject
 
   def to_s
     self.name
   end
+
+  def courses_where(options)
+    self.courses.select { |course| course.level == options[:level] }
+  end
+
+
 
 end
 

@@ -231,6 +231,10 @@ GEM
     shoulda-matchers (1.0.0)
     sketches (0.1.1)
     spoon (0.0.1)
+    spork (1.0.0rc3)
+    spork-rails (3.2.0)
+      rails (>= 3.0.0, < 3.3.0)
+      spork (>= 1.0rc0)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -288,6 +292,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   shoulda
+  spork-rails
   therubyracer
   thin
   twitter-bootstrap-rails
