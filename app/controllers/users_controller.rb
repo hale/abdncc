@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      session[:user_id] = @user.id
       redirect_to user_path(@user.id), :notice => "Account created.  Welcome #{@user.name}!"
     else
       render 'new'
@@ -14,6 +15,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
+    # if current_user.id == @user.id 
+      flash.now[:info] = "#{view_context.link_to('Account settings', edit_user_path(@user))}".html_safe
+    # end
   end
 
   def edit

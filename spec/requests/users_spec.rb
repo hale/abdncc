@@ -53,6 +53,13 @@ describe "Users" do
     subject { page }
 
     it { should have_selector 'title', :text => "#{user.name}" }
+    its(:body) { should have_content "#{user.name}" }
+
+    it "links to the edit user page" do
+      click_link "Account settings"
+      page.should have_content "Save"
+    end
+
 
     describe "user attributes" do
       subject{ page.body }
