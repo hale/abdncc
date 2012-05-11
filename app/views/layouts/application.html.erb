@@ -44,7 +44,7 @@
             </ul>
               <%= form_tag '/search',  :class => "navbar-search pull-left"  do %>
                 <%= text_field_tag :query, params[:query], :placeholder => 'Search Courses', :class => 'search-query' %>
-                <%= submit_tag "search", :name => 'search', :disabled => false %>
+                <%= submit_tag "search", :disabled => true, :class => 'hide' %>
               <% end %>
           </div><!--/.nav-collapse -->
         </div>
