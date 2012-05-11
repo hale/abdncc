@@ -5,7 +5,11 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @courses = Course.all
+    if params[:query]
+      @courses = Course.search params[:query]
+    else
+      @courses = Course.all
+    end
   end
   
 end

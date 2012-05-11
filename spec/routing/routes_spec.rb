@@ -20,6 +20,14 @@ describe "routing to courses" do
     )
   end
 
+  context 'search' do
+    it "routes /courses/search/:query to courses#search" do
+      { :get => "/search" }.should route_to(
+        :controller => "courses",
+        :action => 'index')
+    end
+  end
+
   describe "named routes" do
     it "routes course_path(:id) to course#show" do
       course_path(course.id).should == "/courses/#{course.id}"
@@ -27,6 +35,10 @@ describe "routing to courses" do
 
     it "routes courses_path to courses#index" do
       courses_path.should == "/courses"
+    end
+
+    it "routes course_search_path to courses#search" do
+      course_search_path.should == '/search'
     end
   end
 end
@@ -68,6 +80,31 @@ describe "static pages" do
     { :get => "/" }.should route_to(
       :controller => "subjects",
       :action     => "index")
+  end
+end
+
+
+
+describe "sessions" do
+  let(:user) { FactoryGirl.create(:user) }
+
+  it "routes GET /sessions/new to sessions#new" do
+    { :get => "/sessions/new" }.should route_to(
+      :controller => "sessions",
+      :action     => "new")
+  end
+
+  it "routes DELETE /sessions/:id to sessions#destroy" do
+    { :delete => "/sessions/#{user.id}" }.should route_to(
+      :controller => "sessions",
+      :action     => "destroy",
+      :id         => "#{user.id}")
+  end
+
+  it "routes POST /sessions to sessions#new" do
+    { :post => "/sessions" }.should route_to(
+      :controller => "sessions",
+      :action     => "create")
   end
 end
 

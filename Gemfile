@@ -4,6 +4,10 @@ gem 'rails', '3.2.3'
 gem 'heroku'
 gem 'thin'
 gem 'randumb' # lets you get random records efficiently
+gem 'attribute-defaults' # really clean way of having default attributes for AR models
+
+# exposes full text search capabilities from PostgreSQL
+gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 
 # for creating sample database on the server
 gem 'faker'

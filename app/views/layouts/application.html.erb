@@ -33,8 +33,19 @@
             <ul class="nav">
               <li><%= link_to "Courses", courses_path  %></li>
               <li><%= link_to "Subjects", subjects_path  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
             </ul>
+            <ul class="nav pull-right">
+              <% if current_user %>
+                <li><%= link_to "Log out", session_path(@current_user.id), :method => :delete  %></li>
+              <% else %>
+                <li><%= link_to "Sign up", new_user_path %></li>
+                <li><%= link_to "Log in", new_session_path %></li>
+              <% end -%>
+            </ul>
+              <%= form_tag '/search',  :class => "navbar-search pull-left"  do %>
+                <%= text_field_tag :query, params[:query], :placeholder => 'Search Courses', :class => 'search-query' %>
+                <%= submit_tag "search", :name => 'search', :disabled => false %>
+              <% end %>
           </div><!--/.nav-collapse -->
         </div>
       </div>

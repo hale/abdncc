@@ -24,6 +24,21 @@ describe UsersController do
     end
   end
 
+  describe "GET edit" do
+    it "assigns params[:user] to @user" do
+      get :edit, :id => user.id
+      assigns(:user).should == user
+    end
+  end
+
+  describe "PUT update" do
+    it "assigns params[:user] to @user" do
+      put :update, :id => user.id
+      assigns(:user).should == user
+    end
+    
+  end
+
 
 
 

@@ -1,0 +1,9 @@
+<% provide(:title, "Log in") %>
+
+<h1>Log in</h1>
+
+<%= form_tag sessions_path do %>
+  <%= text_field_tag :email, params[:email] %>
+  <%= password_field_tag :password %>
+  <%= submit_tag "Log in" %>
+<% end -%>

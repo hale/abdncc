@@ -12,6 +12,11 @@ FactoryGirl.define do
     end
   end
 
+  factory :user_min, class: User do
+    email
+    password 'foobar'
+  end
+
   factory :rand_user, class: User do
     name Faker::Name.name
     email Faker::Internet.email

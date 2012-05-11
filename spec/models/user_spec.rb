@@ -6,6 +6,8 @@ describe User do
 															 :password => 'foobar') 
 								}
 
+	let(:user_min) { FactoryGirl.create(:user_min) }
+
 
 	it { should have_and_belong_to_many :courses }
 	it { should have_many(:bookmarks).class_name("Course") }
@@ -15,6 +17,12 @@ describe User do
 		it { should respond_to :email }
 		it { should respond_to :status }
 		it { should respond_to :password_digest }
+	end
+
+	describe "default values" do
+		before { user_min.save }
+		subject { user_min }
+		its(:name) { should == "Anonymous"}
 	end
 
 	describe "validations" do
