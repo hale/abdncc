@@ -19,5 +19,5 @@
   <strong>Department</strong>
   <li><%= course.department %></li>
   <strong>Subject</strong>
-  <li><%= course.subject %></li>
+  <li><%= link_to course.subject, subject_path( course.subject ) %></li>  
 </ul>

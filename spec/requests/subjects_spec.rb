@@ -4,14 +4,6 @@ describe "Subjects" do
   let(:subj) { FactoryGirl.create(:subject) }
   before { subj.save }
 
-  describe "the root url" do
-    before { visit root_path }
-    it "should have a link to all subjects" do
-      click_link "Subjects"
-      page.should have_content "Course Index By Subject"
-    end
-  end
-
   describe "show.html.erb the subject page" do
     before { visit subject_path subj }
     subject { page }

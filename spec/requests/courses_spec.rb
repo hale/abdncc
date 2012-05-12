@@ -4,24 +4,6 @@ describe "Courses" do
   let(:course) { FactoryGirl.create(:course) }
   before{ course.save }
 
-  describe "the root url" do
-    before { visit root_path }
-    it "should have a link to all courses" do
-      click_link "Courses"
-      page.should have_content "All Courses"
-    end
-
-    context "search box in the navbar" do
-      it "should return a search result" do
-        visit root_url
-        fill_in 'query', :with => course.name
-        click_button 'search'
-        page.should have_content course.name
-      end
-    end
-
-  end
-
   describe "show.html.erb the course page" do
     before { visit course_path course }
     subject { page }
@@ -78,6 +60,11 @@ describe "Courses" do
       it "course name links to the course page" do
         click_link "#{course.name}"
         page.should have_selector 'title', text: course.name
+      end
+
+      it "subject name links to the subject page" do
+        click_link "#{course.subject}"
+        page.should have_selector 'title', text: course.subject.name
       end
     end
 

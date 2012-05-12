@@ -10,21 +10,6 @@ describe "Users" do
 
     it { should have_selector 'title', :text => "Signup form" }
 
-    # TODO: this is a bad spec
-    describe "the root url" do
-      it "should have a logout link in the nav bar" do
-        visit new_session_path
-        fill_in 'email', :with => user.email
-        fill_in 'password', :with => 'foobar'
-        click_button 'Log in'
-        click_link "Aberdeen Course Catalogue"
-        click_link "Log out"
-        page.should have_content "out"
-      end
-
-    end
-
-
     describe "the signup form" do
       context "valid information" do
         it "creates an account for the user" do
