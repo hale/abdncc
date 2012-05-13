@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe 'Site wide elements' do
+  include Helpers
+
   let(:user) { FactoryGirl.create(:user) }
   let(:course) { FactoryGirl.create(:course) }
   let(:subj) { FactoryGirl.create(:subject) }
@@ -10,13 +12,6 @@ describe 'Site wide elements' do
     course.save
     subj.save
     visit root_path
-  end
-
-  def log_in
-    visit new_session_path
-    fill_in 'email', :with => user.email
-    fill_in 'password', :with => 'foobar'
-    click_button 'Log in'
   end
 
   describe "The navigation bar" do
@@ -40,7 +35,7 @@ describe 'Site wide elements' do
     end
 
     context "logged in" do
-      before { log_in }
+      before { log_in user }
 
       it "should have a logout link in the nav bar" do
         click_link "Aberdeen Course Catalogue"

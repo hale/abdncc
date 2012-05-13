@@ -3,7 +3,7 @@
 
 <h2><%= @user.name %> <small> <%= @user.status %></small></h2>
 
-
+<h3>Course List</h3>
 <% @user.courses.each do |course| %>
   <ul class="courses">
     <li class="course"><%= render course %></li>

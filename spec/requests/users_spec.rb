@@ -52,6 +52,7 @@ describe "Users" do
       it { should have_content user.status }
 
       context "the list of courses this user has taken / is taking" do
+        it { should have_content "Course List" }
         it { should have_selector '.courses' }
         it { should have_selector '.course' }
       end

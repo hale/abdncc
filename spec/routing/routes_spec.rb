@@ -5,7 +5,7 @@ describe "routing to courses" do
   subject { course }
   before { course.save}
 
-  it "routes /course/:id to course#show for the course id" do
+  it "routes /courses/:id to course#show for the course id" do
     { :get => "/courses/#{course.id}" }.should route_to(
       :controller => "courses",
       :action     => "show",
@@ -48,7 +48,7 @@ describe "routing to subjects" do
   subject { subject }
   before { subject.save}
 
-  it "routes /subject/:id to subject#show for the subject id" do
+  it "routes /subjects/:id to subject#show for the subject id" do
     { :get => "/subjects/#{subject.id}" }.should route_to(
       :controller => "subjects",
       :action     => "show",
@@ -114,7 +114,7 @@ describe "routing to users" do
   it { should be_valid }
   before { user.save }
 
-  it "routes /user/:id to users#show" do
+  it "routes GET /users/:id to users#show" do
     { :get => "/users/#{user.id}"}.should route_to(
       :controller => "users",
       :action => 'show',
@@ -122,17 +122,25 @@ describe "routing to users" do
       )
   end
 
-  it "routes /users to users#index" do
+  it "routes GET /users to users#index" do
     { :get => "/users" }.should route_to(
       :controller => 'users',
       :action => 'index'
       )
   end
 
-  it "routes /users/new to users#new" do
+  it "routes GET /users/new to users#new" do
     { :get => "/users/new" }.should route_to(
       :controller => "users",
       :action     => "new"
+      )
+  end
+
+  it "routes POST /user/:id/add_course to users#add_course" do
+    { :post => "/users/#{user.id}/add_course"}.should route_to(
+      :controller => 'users',
+      :action => 'add_course',
+      :id => "#{user.id}"
       )
   end
 

@@ -105,6 +105,9 @@ GEM
       guard (>= 0.8.3)
     guard-rspec (0.7.0)
       guard (>= 0.10.0)
+    guard-spork (0.8.0)
+      guard (>= 0.10.0)
+      spork (>= 0.8.4)
     heroku (2.24.1)
       launchy (>= 0.3.2)
       netrc (~> 0.7.1)
@@ -285,6 +288,7 @@ DEPENDENCIES
   faker
   guard-cucumber
   guard-rspec
+  guard-spork
   heroku
   irbtools-more
   jquery-rails

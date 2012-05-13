@@ -32,4 +32,12 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+
+  def add_course
+    @user = User.find params[:id]
+    @course = Course.find params[:course_id]
+    @user.courses << @course
+
+    redirect_to course_path(@course), :notice => "Course has been added to your Course List"
+  end
 end

@@ -1,5 +1,17 @@
 <% provide(:title, @course.name) %>
 
+<% content_for :sidebar do %>
+  <li class="nav-header">Course Actions</li>
+  <% if current_user %>
+    <li>
+      <%= form_tag "/users/#{current_user.id}/add_course" do %>
+        <%= hidden_field_tag 'course_id', @course.id %>
+        <%= button_tag "Add to my Course List", :class => 'btn' %>
+      <% end -%>
+    </li>
+  <% end -%>
+<% end -%>
+
 <h2><%= @course.name %></h2>
 
 <h3>Course Code</h3>

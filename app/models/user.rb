@@ -12,6 +12,22 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   attr_defaults :name => "Anonymous"
+
+  def has_course?( course )
+    self.courses.exists?( course ) ? true : false
+  end
+
+  def add_course( course )
+    # if course.is_a? Course
+      self.courses << course
+    # elsif course.is_a? Fixnum
+      # self.courses << Course.find( course )
+    # end
+  end
+
+  def remove_course ( course )
+    self.courses.delete course
+  end
 end
 
 # == Schema Information

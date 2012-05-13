@@ -7,10 +7,62 @@ describe User do
 								}
 
 	let(:user_min) { FactoryGirl.create(:user_min) }
+	let(:user_full) { FactoryGirl.create( :user ) }
 
 
 	it { should have_and_belong_to_many :courses }
 	it { should have_many(:bookmarks).class_name("Course") }
+
+	describe "course related methods" do
+		let(:course) { FactoryGirl.create( :course ) }
+
+		describe "the has_course? method" do
+			subject { user_full }
+			it { should respond_to :has_course? }
+
+			context "user has the course in their course list" do
+				before { user_full.courses << course  }
+
+				it "should return true" do
+					user_full.has_course?( course ).should be_true
+				end
+
+				# after { user_full.courses.delete course }
+				after { user_full.remove_course course }
+			end
+
+			context "user does not have the course in their course list"
+				it "should return false" do
+					user_full.has_course?( course ).should be_false
+				end
+			end
+
+		describe "the add course method" do
+			subject { user_full }
+			it { should respond_to :add_course }
+
+			it "should add a the course to the user's course list" do
+				user_full.add_course course
+				user_full.courses.include?( course ).should be_true
+			end
+		end
+
+		describe "the remove course method" do
+			subject { user_full }
+			it { should respond_to :remove_course }
+
+			before { user_full.add_course course }
+
+			it "should remove the course from the user's course list" do
+				user_full.remove_course course
+				user_full.has_course?( course ).should be_false
+			end
+		end
+
+
+	end
+
+
 	
 	describe "user attributes" do
 		it { should respond_to :name }

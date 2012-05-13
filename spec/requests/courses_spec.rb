@@ -1,8 +1,14 @@
 require 'spec_helper'
 
 describe "Courses" do
+  include Helpers
+
   let(:course) { FactoryGirl.create(:course) }
-  before{ course.save }
+  let(:user) { FactoryGirl.create(:user) }
+  before do
+    course.save
+    user.save
+  end
 
   describe "show.html.erb the course page" do
     before { visit course_path course }
@@ -29,8 +35,50 @@ describe "Courses" do
       page.should have_selector 'title', text: course.subject.name
     end
 
+    context "logged in" do
+      before do
+        log_in user
+        visit course_path course
+      end
 
-  end 
+      context "user has the course in their course list" do
+        before { user.add_course course }
+
+        describe "the 'Remove from my Course List' button" do
+          xit "should remove the course from the user's course list" do
+            # CODE HERE
+          end
+        end
+      end
+
+      context "the user does not have the course in their course list" do
+        before { user.remove_course course }
+
+        describe "the 'Add to my Course List' button" do
+          before { click_on( 'Add to my Course List' ) }
+          it "should add the course to the user's Course List" do
+            user.should have_course course
+          end
+          it "should show a message saying the course has been added" do
+            page.should have_content "added"
+          end
+        end
+      end # /context
+
+    end # /context logged in
+
+    context "unknown user" do
+      before { log_out }
+      describe "the add/remove buttons" do
+        subject { page }
+        it { should_not have_content 'Add to my Course List' }
+        it { should_not have_content 'Remove from my Course List' }
+      end
+    end
+
+    #    BOOKMARKS     it { should have_content "Sign up or log in now to track this ourse for later!"}
+
+  end # show.html
 
   describe "index.html.erb the listing courses page" do
     before { visit courses_path }

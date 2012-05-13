@@ -6,10 +6,16 @@ Abdncc::Application.routes.draw do
 
   resources :courses
   resources :subjects
-  resources :users
+  resources :users do
+    # post 'add-course', :on => :member
+    member do
+      post 'add_course'
+    end
+  end
   resources :sessions, :except => [:edit, :show, :update, :index]
 
   match '/search' => 'courses#index', :as => :course_search
+
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
