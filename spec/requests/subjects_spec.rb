@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Subjects" do
-  let(:subj) { FactoryGirl.create(:subject) }
+  let(:subj) { FactoryGirl.create(:subject_with_courses) }
   before { subj.save }
 
   describe "show.html.erb the subject page" do

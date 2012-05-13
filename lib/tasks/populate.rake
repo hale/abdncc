@@ -4,9 +4,10 @@ namespace :db do
     make_courses
     make_subjects
     make_users
+    make_comments
 
     link_subjects_courses
-    # add_courses_users
+    # link_comments_courses_users
   end
 end
 
@@ -84,14 +85,6 @@ def make_users
   end
 end
 
-# def add_courses_users
-#   User.all.each do |user|
-#     (user.courses << courses.sample( rand(4..20) )).flatten
-#     (user.bookmarks << courses.sample( rand(0..5) )).flatten
-#     user.save
-#   end
-# end
-
 
 def link_subjects_courses
   Course.all.each do |course|
@@ -100,13 +93,20 @@ def link_subjects_courses
   end
 end
 
-# def link_users_courses
-#   Course.all.each do |course|
-#     # assign a random user to this course (uses randumb gem)
-#     course.update_attributes( :user => User.random)
-#   end
-# end
+def link_comments_courses_users
+  comments.each do |comment|
+    comment.update_attributes(:user => User.random, :course => Course.random)
+  end
+end
 
+def make_comments
+  400.times do
+    Comment.create(content: Faker::Lorem.paragraph,
+                   user_id: User.random.id,
+                   course_id: Course.random.id
+                   )
+  end
+end
 
 
 

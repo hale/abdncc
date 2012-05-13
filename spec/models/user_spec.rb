@@ -12,6 +12,7 @@ describe User do
 
 	it { should have_and_belong_to_many :courses }
 	it { should have_many(:bookmarks).class_name("Course") }
+	it { should have_many :comments }
 
 	describe "course related methods" do
 		let(:course) { FactoryGirl.create( :course ) }

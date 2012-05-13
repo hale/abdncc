@@ -86,9 +86,32 @@ describe "Courses" do
         it { should_not have_content 'Remove from my Course List' }
         it { should have_content 'Create an account or log in to start tracking this course' }
       end
-    end
+    end # /context unkown user
 
     #    BOOKMARKS     it { should have_content "Sign up or log in now to track this ourse for later!"}
+
+    describe "course comments" do
+      let(:course_with_comments) { FactoryGirl.create(:course_with_comments) }
+      before { visit course_path course_with_comments }
+
+      subject { page }
+
+      it { should have_selector '.comments' }
+      it { should have_selector '.comment' }
+
+      it { should have_content 'Comments' }
+
+      describe "a comment in the list" do
+        let(:comment) { course_with_comments.comments.first }
+        subject { page.find('.comment') }
+
+        it { should have_content "#{comment.user.name}" }
+        it { should have_content "#{comment.user.status}" }
+        it { should have_content "#{comment.created_at.to_s}"}
+        it { should have_content "#{comment.content}"}
+      end
+
+    end # course comments
 
   end # show.html
 

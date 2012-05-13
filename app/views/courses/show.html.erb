@@ -2,19 +2,23 @@
 
 <% content_for :sidebar do %>
   <li class="nav-header">Course Actions</li>
+  <li>Your 'Course List' is a list of all courses you have taken or are currently taking.</li>
+  <br />
+  <li><strong>Add courses to get the most out of ABDNCC</strong></li>
+  <br />
   <% if current_user %>
     <% if current_user.has_course? @course %><!-- Show the 'Remove Course' button -->
       <li>
         <%= form_tag remove_course_user_path(current_user) do %>
           <%= hidden_field_tag 'course_id', @course.id %>
-          <%= button_tag "Remove from my Course List", :class => 'btn' %>
+          <%= button_tag "Remove from my Course List", :class => 'btn btn-danger' %>
         <% end -%>
       </li>
     <% else %><!-- Show the 'Add Course' button -->
       <li>
         <%= form_tag add_course_user_path(current_user) do %>
           <%= hidden_field_tag 'course_id', @course.id %>
-          <%= button_tag "Add to my Course List", :class => 'btn' %>
+          <%= button_tag "Add to my Course List", :class => 'btn btn-success' %>
         <% end -%>
       </li>
     <% end -%>
@@ -52,6 +56,17 @@
 
 <h3>Department</h3>
 <p><%= @course.department %></p>
+
+<h2>Comments</h2>
+<div class="comments">
+  <% @course.comments.each do |comment| %>
+  <div class="comment">
+    <h4><%= comment.user.name %> <small><%= comment.user.status %></small></h4>
+    <h6><%= comment.created_at.to_s %></h6>
+    <p><%= comment.content %></p>
+  </div>
+  <% end -%>
+</div>
 
 
 

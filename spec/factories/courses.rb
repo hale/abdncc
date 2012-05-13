@@ -13,6 +13,13 @@ FactoryGirl.define do
     level       2
     subject     
     department  "School of Language and Literature"
+
+    factory :course_with_comments do
+      after_build do |course|
+        course.comments = [FactoryGirl.build(:comment, course: course)]
+      end
+    end
+
   end
 
   factory :rand_course, class: Course do
@@ -26,9 +33,17 @@ FactoryGirl.define do
     level       [1,2,3,4].sample  
     department  "School of #{Faker::Lorem.words.first.titlecase}"
     association :subject, factory: :rand_subject   
-    after_build do |subj|
-        subj.ccode = subj.rand_ccode
+    after_build do |course|
+      course.ccode = course.rand_ccode
     end
+
+    factory :rand_course_with_comments do
+      after_build do |course|
+        course.ccode = course.rand_ccode
+        course.comments = FactoryGirl.build_list(:rand_comment, 3, course: course)
+      end
+    end
+
   end
 
 end

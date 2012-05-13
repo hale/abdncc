@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Users" do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user_with_courses) }
   before { user.save }
 
   describe "new.html.erb the signup page" do
@@ -34,7 +34,7 @@ describe "Users" do
   end
 
   describe "show.html.erb the user page" do
-    before { visit user_path(user) }
+    before { visit user_path( user) }
     subject { page }
 
     it { should have_selector 'title', :text => "#{user.name}" }
