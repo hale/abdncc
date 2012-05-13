@@ -5,22 +5,21 @@
   <% if current_user %>
     <% if current_user.has_course? @course %><!-- Show the 'Remove Course' button -->
       <li>
-        <%= form_tag "/users/#{current_user.id}/remove_course" do %>
+        <%= form_tag remove_course_user_path(current_user) do %>
           <%= hidden_field_tag 'course_id', @course.id %>
           <%= button_tag "Remove from my Course List", :class => 'btn' %>
         <% end -%>
       </li>
     <% else %><!-- Show the 'Add Course' button -->
       <li>
-        <%= form_tag "/users/#{current_user.id}/add_course" do %>
+        <%= form_tag add_course_user_path(current_user) do %>
           <%= hidden_field_tag 'course_id', @course.id %>
           <%= button_tag "Add to my Course List", :class => 'btn' %>
         <% end -%>
       </li>
     <% end -%>
-
-  <% end -%>
-<% end -%>
+  <% end -%><!-- /current-user -->
+<% end -%><!-- /sidebar -->
 
 <h2><%= @course.name %></h2>
 

@@ -2,6 +2,9 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find params[:id]
+    unless current_user
+      flash[:notice] = "Create an account or log in to start tracking this course"
+    end
   end
 
   def index

@@ -15,7 +15,7 @@ Abdncc::Application.routes.draw do
   end
   resources :sessions, :except => [:edit, :show, :update, :index]
 
-  match '/search' => 'courses#index', :as => :course_search
+  match '/search' => 'courses#index', :as => :course_search, :via => :post
 
 
   # Sample of regular route:

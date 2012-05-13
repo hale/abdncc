@@ -84,6 +84,7 @@ describe "Courses" do
         subject { page }
         it { should_not have_content 'Add to my Course List' }
         it { should_not have_content 'Remove from my Course List' }
+        it { should have_content 'Create an account or log in to start tracking this course' }
       end
     end
 

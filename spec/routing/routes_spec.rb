@@ -22,7 +22,7 @@ describe "routing to courses" do
 
   context 'search' do
     it "routes /courses/search/:query to courses#search" do
-      { :get => "/search" }.should route_to(
+      { :post => "/search" }.should route_to(
         :controller => "courses",
         :action => 'index')
     end
@@ -156,15 +156,18 @@ describe "routing to users" do
     it "routes user_path(:id) to users#show" do
       user_path(user.id).should == "/users/#{user.id}"
     end
-
     it "routes users_path to users#index" do
       users_path.should == "/users"
     end
-
     it "routes new_user_path ro users#new" do
       new_user_path.should == "/users/new"
     end
-    
+    it "routes add_course_user(:id) to users#add_course" do
+      add_course_user_path(user.id).should == "/users/#{user.id}/add_course"
+    end
+    it "routes remove_course_user(:id) to users#remove_course" do
+      remove_course_user_path(user.id).should == "/users/#{user.id}/remove_course"
+    end
   end
 
 
