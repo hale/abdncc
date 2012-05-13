@@ -144,6 +144,14 @@ describe "routing to users" do
       )
   end
 
+  it "routes POST /user/:id/remove_course to users#remove_course" do
+    { :post => "/users/#{user.id}/remove_course"}.should route_to(
+      :controller => 'users',
+      :action => 'remove_course',
+      :id => "#{user.id}"
+      )
+  end
+
   describe "named routes" do
     it "routes user_path(:id) to users#show" do
       user_path(user.id).should == "/users/#{user.id}"

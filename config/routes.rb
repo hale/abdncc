@@ -10,6 +10,7 @@ Abdncc::Application.routes.draw do
     # post 'add-course', :on => :member
     member do
       post 'add_course'
+      post 'remove_course'
     end
   end
   resources :sessions, :except => [:edit, :show, :update, :index]

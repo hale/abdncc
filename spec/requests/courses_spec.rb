@@ -43,10 +43,16 @@ describe "Courses" do
 
       context "user has the course in their course list" do
         before { user.add_course course }
+        before { visit course_path course }
 
         describe "the 'Remove from my Course List' button" do
-          xit "should remove the course from the user's course list" do
-            # CODE HERE
+          before { click_on 'Remove from my Course List' }
+
+          it "should remove the course from the user's course list" do 
+            user.should_not have_course course
+          end
+          it "should show a message saying the course has been removed" do
+            page.should have_content "removed"
           end
         end
       end
@@ -56,11 +62,16 @@ describe "Courses" do
 
         describe "the 'Add to my Course List' button" do
           before { click_on( 'Add to my Course List' ) }
+
           it "should add the course to the user's Course List" do
             user.should have_course course
           end
           it "should show a message saying the course has been added" do
             page.should have_content "added"
+          end
+          it "course page should not show the 'Add to my Course List' button" do
+            visit course_path course
+            page.should_not have_content "Add to my Course List"
           end
         end
       end # /context

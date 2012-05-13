@@ -36,8 +36,16 @@ class UsersController < ApplicationController
   def add_course
     @user = User.find params[:id]
     @course = Course.find params[:course_id]
-    @user.courses << @course
+    @user.add_course @course
 
-    redirect_to course_path(@course), :notice => "Course has been added to your Course List"
+    redirect_to course_path(@course), :notice => "#{@course.ccode} has been added to your Course List"
+  end
+
+  def remove_course
+    @user = User.find params[:id]
+    @course = Course.find params[:course_id]
+    @user.remove_course @course
+
+    redirect_to course_path(@course), :notice => "#{@course.ccode} has been removed from your Course List"
   end
 end

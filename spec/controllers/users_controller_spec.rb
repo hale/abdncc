@@ -41,21 +41,44 @@ describe UsersController do
     end    
   end
 
-  describe "POST add_course" do
+  context "course related actions" do
     let(:course) { FactoryGirl.create(:course) }
-    before { post :add_course, :id => user.id, :course_id => course.id }
 
-    it "assigns params[:user] to @user" do
-      assigns(:user).should == user
+    describe "POST add_course" do      
+      before { post :add_course, :id => user.id, :course_id => course.id }
+
+      it "assigns params[:user] to @user" do
+        assigns(:user).should == user
+      end
+      it "assigns params[:course_id] to @course" do
+        assigns(:course).should == course
+      end
+      it "adds the course to the user's course list" do
+        User.find(user.id).courses.should include(course)
+      end
+      it "redirects to the course page" do
+        response.should redirect_to course_path course
+      end
     end
-    it "assigns params[:course_id] to @course" do
-      assigns(:course).should == course
-    end
-    it "adds the course to the user's course list" do
-      User.find(user.id).courses.should include(course)
-    end
-    it "redirects to the course page" do
-      response.should redirect_to course_path course
+
+    describe "POST remove_course" do
+      before do
+        User.find(user.id).courses << course
+        post :remove_course, :id => user.id, :course_id => course.id
+      end
+
+      it "assigns params[:user] to @user" do
+        assigns(:user).should == user
+      end
+      it "assigns params[:course_id] to @course" do
+        assigns(:course).should == course
+      end
+      it "removes the course from the user's course list" do
+        User.find(user.id).courses.should_not include(course)
+      end
+      it "redirects to the course page" do
+        response.should redirect_to course_path course
+      end
     end
 
   end

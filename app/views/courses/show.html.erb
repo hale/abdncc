@@ -3,12 +3,22 @@
 <% content_for :sidebar do %>
   <li class="nav-header">Course Actions</li>
   <% if current_user %>
-    <li>
-      <%= form_tag "/users/#{current_user.id}/add_course" do %>
-        <%= hidden_field_tag 'course_id', @course.id %>
-        <%= button_tag "Add to my Course List", :class => 'btn' %>
-      <% end -%>
-    </li>
+    <% if current_user.has_course? @course %><!-- Show the 'Remove Course' button -->
+      <li>
+        <%= form_tag "/users/#{current_user.id}/remove_course" do %>
+          <%= hidden_field_tag 'course_id', @course.id %>
+          <%= button_tag "Remove from my Course List", :class => 'btn' %>
+        <% end -%>
+      </li>
+    <% else %><!-- Show the 'Add Course' button -->
+      <li>
+        <%= form_tag "/users/#{current_user.id}/add_course" do %>
+          <%= hidden_field_tag 'course_id', @course.id %>
+          <%= button_tag "Add to my Course List", :class => 'btn' %>
+        <% end -%>
+      </li>
+    <% end -%>
+
   <% end -%>
 <% end -%>
 
