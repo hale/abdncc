@@ -7,13 +7,13 @@ Abdncc::Application.routes.draw do
   resources :courses
   resources :subjects
   resources :users do
-    # post 'add-course', :on => :member
     member do
       post 'add_course'
       post 'remove_course'
     end
   end
   resources :sessions, :except => [:edit, :show, :update, :index]
+  resources :comments, :only => [:create, :destroy]
 
   match '/search' => 'courses#index', :as => :course_search, :via => :post
 

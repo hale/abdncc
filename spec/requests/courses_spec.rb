@@ -107,8 +107,44 @@ describe "Courses" do
 
         it { should have_content "#{comment.user.name}" }
         it { should have_content "#{comment.user.status}" }
-        it { should have_content "#{comment.created_at.to_s}"}
-        it { should have_content "#{comment.content}"}
+        it { should have_content "#{comment.created_at.to_s}" }
+        it { should have_content "#{comment.content}" }
+      end
+
+      describe "the 'add a new comment' button" do
+        context "logged in" do
+          before { log_in user }
+
+          context "valid information" do
+            it "adds a new comment to the course page" do
+              visit course_path course
+              fill_in 'comment_content', :with => "This is a new comment!"
+              click_on "Add Comment"
+              page.should have_content "This is a new comment!"
+            end
+            xit "displays a success message " do
+            end
+          end
+          context "invalid information" do
+            xit "renders the course page" do
+            end
+            xit "displays a message about what happened" do
+            end
+          end
+        end
+
+        context "unknown user" do
+          before do
+            log_out
+            visit course_path course
+          end
+          subject { page }
+          it { should_not have_content "Add Comment"}
+
+          it "should show a message about signing up" do
+            page.should have_content "Sign up for an account to contribute"
+          end
+        end
       end
 
     end # course comments

@@ -28,6 +28,7 @@ describe "routing to courses" do
     end
   end
 
+
   describe "named routes" do
     it "routes course_path(:id) to course#show" do
       course_path(course.id).should == "/courses/#{course.id}"
@@ -72,8 +73,7 @@ describe "routing to subjects" do
       subjects_path.should == "/subjects"
     end
   end
-
-  end
+end
 
 describe "static pages" do
   it "routes / to subjects#index" do
@@ -82,8 +82,6 @@ describe "static pages" do
       :action     => "index")
   end
 end
-
-
 
 describe "sessions" do
   let(:user) { FactoryGirl.create(:user) }
@@ -169,7 +167,31 @@ describe "routing to users" do
       remove_course_user_path(user.id).should == "/users/#{user.id}/remove_course"
     end
   end
-
-
 end
 
+describe "routing to comments" do
+    let(:comment) { FactoryGirl.create(:comment) }
+
+    # it "routes POST /comments to comments#create" do
+    #   { :post => "/comments" }.should route_to(
+    #     :controller => 'comments',
+    #     :action => 'create'
+    #     )
+    # end
+
+    # it "routes DELETE /comments/:id to comments#destroy" do
+    #   { :delete => "/comments/#{comment.id}" }.should route_to(
+    #     :controller => 'comments',
+    #     :action => 'destroy'
+    #     )
+    # end
+
+    describe "named routes" do
+      it "routes DELETE comment_path(:id) to comments#destroy" do
+        comment_path(comment.id).should == "/comments/#{comment.id}"
+      end
+      it "routes POST comments_path(:id) to comments#create" do
+        comments_path.should == '/comments'
+      end
+    end
+  end

@@ -58,6 +58,31 @@
 <p><%= @course.department %></p>
 
 <h2>Comments</h2>
+
+<!-- Add Comment box -->
+<% if current_user %>
+  <%= form_for Comment.new do |f| %>
+    <% if @comment.errors.any? %>
+      <div class="error_messages">
+        <h2>Oops!</h2>
+        <ul>
+          <% for message in @user.errors.full_messages %>
+            <li><%= message %></li>
+          <% end -%>
+        </ul>
+      </div>
+    <% end -%>
+    <%= f.text_area :content, :placeholder => "Write something and then click 'Add Comment'!" %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :course_id, :value => @course.id %>
+    <%= f.button "Add Comment", :class => 'btn btn-primary' %>
+  <% end -%>
+
+<% else %>
+  <p class='success'>Sign up for an account to contribute</p>
+<% end -%>
+
+
 <div class="comments">
   <% @course.comments.each do |comment| %>
   <div class="comment">

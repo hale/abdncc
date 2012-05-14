@@ -38,10 +38,7 @@ describe Course do
   describe "sample ccode" do
     subject { course.rand_ccode }
     its(:length) { should == 7 }
-  end
-    
-
-  
+  end  
 
 
 end
