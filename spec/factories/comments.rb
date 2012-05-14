@@ -2,14 +2,23 @@
 
 FactoryGirl.define do
   factory :comment do
-    user
-    course
-    content Faker::Lorem.paragraph
+    # user
+    # course
+    # after_build do |comment|
+    #   comment.content = Faker::Lorem.paragraph
+    # end
+    association :user, factory: :rand_user
+    association :course, factory: :rand_course
+    after_build do |comment|
+      comment.content = Faker::Lorem.paragraph
+    end
   end
 
   factory :rand_comment, class: Comment do
     association :user, factory: :rand_user
     association :course, factory: :rand_course
-    content Faker::Lorem.paragraph
+    after_build do |comment|
+      comment.content = Faker::Lorem.paragraph
+    end
   end
 end

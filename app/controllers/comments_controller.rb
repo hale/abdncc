@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
     if @comment.save
       # handle successful creation of the comment
-      redirect_to course_path params[:comment][:course_id]
+      redirect_to course_path(params[:comment][:course_id]), :notice => "Comment added!"
     else
       redirect_to course_path params[:comment][:course_id]
       # handle non-success

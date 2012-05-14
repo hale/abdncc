@@ -23,6 +23,7 @@ describe CommentsController do
     it "redirects to course_path(:id)" do
       response.should redirect_to course_path comment.course
     end
+    
   end
 
 

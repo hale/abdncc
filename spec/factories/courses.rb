@@ -13,6 +13,9 @@ FactoryGirl.define do
     level       2
     subject     
     department  "School of Language and Literature"
+    after_build do |course|
+      course.user_id = FactoryGirl.create(:rand_user).id
+    end
 
     factory :course_with_comments do
       after_build do |course|
@@ -22,25 +25,26 @@ FactoryGirl.define do
 
   end
 
-  factory :rand_course, class: Course do
-    name        Faker::Lorem.sentence.upcase
+  factory :rand_course, class: Course do    
     credits     [15, 20, 30, 60].sample
-    coordinator Faker::Name.name
-    prereq      Faker::Lorem.sentence
-    note        Faker::Lorem.sentence(15)
-    description Faker::Lorem.paragraph(10)
-    assessment  Faker::Lorem.paragraph
     level       [1,2,3,4].sample  
-    department  "School of #{Faker::Lorem.words.first.titlecase}"
     association :subject, factory: :rand_subject   
     after_build do |course|
+      course.name        = Faker::Lorem.sentence.upcase      
+      course.coordinator = Faker::Name.name
+      course.prereq      = Faker::Lorem.sentence
+      course.note        = Faker::Lorem.sentence(15)
+      course.description = Faker::Lorem.paragraph(10)
+      course.assessment  = Faker::Lorem.paragraph      
+      course.department  = "School of #{Faker::Lorem.words.first.titlecase}"
       course.ccode = course.rand_ccode
+      course.user_id = FactoryGirl.create(:rand_user).id
     end
 
     factory :rand_course_with_comments do
       after_build do |course|
         course.ccode = course.rand_ccode
-        course.comments = FactoryGirl.build_list(:rand_comment, 3, course: course)
+        course.comments << [FactoryGirl.build(:rand_comment, course: course)]
       end
     end
 

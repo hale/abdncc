@@ -26,11 +26,13 @@ FactoryGirl.define do
 
   end
 
-  factory :rand_user, class: User do
-    name Faker::Name.name
-    email Faker::Internet.email
-    status "#{['First','Second','Third','Fourth'].sample} Year #{Faker::Lorem.words[0..1].to_sentence.titlecase} #{['BSc','MPhil','MA','MSc','PhD'].sample}" 
+  factory :rand_user, class: User do 
     password "foobar"
+    after_build do |user|
+      user.name = Faker::Name.name
+      user.email = Faker::Internet.email
+      user.status = "#{['First','Second','Third','Fourth'].sample} Year #{Faker::Lorem.words[0..1].to_sentence.titlecase} #{['BSc','MPhil','MA','MSc','PhD'].sample}" 
+    end
 
     factory :rand_user_with_comments do
       after_build do |user|

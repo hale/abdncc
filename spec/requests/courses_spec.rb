@@ -91,7 +91,7 @@ describe "Courses" do
     #    BOOKMARKS     it { should have_content "Sign up or log in now to track this ourse for later!"}
 
     describe "course comments" do
-      let(:course_with_comments) { FactoryGirl.create(:course_with_comments) }
+      let(:course_with_comments) { FactoryGirl.create(:rand_course_with_comments) }
       before { visit course_path course_with_comments }
 
       subject { page }
@@ -113,20 +113,34 @@ describe "Courses" do
 
       describe "the 'add a new comment' button" do
         context "logged in" do
-          before { log_in user }
+          before do
+            log_in user
+            visit course_path course
+          end
 
           context "valid information" do
-            it "adds a new comment to the course page" do
-              visit course_path course
+            before do
               fill_in 'comment_content', :with => "This is a new comment!"
               click_on "Add Comment"
+            end
+            it "adds a new comment to the course page" do
               page.should have_content "This is a new comment!"
             end
-            xit "displays a success message " do
+            it "adds the comment to the user's list of courses" do
+              user.comments.should include(Comment.find_by_content 'This is a new comment!' )
+            end
+            it "displays a success message " do
+              page.should have_content "Comment added!"
             end
           end
           context "invalid information" do
-            xit "renders the course page" do
+            before do
+              Course.find(course).comments.delete_all
+              fill_in 'comment_content', :with => ""
+              click_on "Add Comment"
+            end
+            it "doesn't add the comment" do
+              Course.find(course).comments.should be_empty
             end
             xit "displays a message about what happened" do
             end

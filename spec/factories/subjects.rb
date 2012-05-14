@@ -14,14 +14,13 @@ FactoryGirl.define do
   end
 
   factory :rand_subject, class: Subject do
-  	name Faker::Lorem.words.first.titlecase
   	after_build do |subject|
+      subject.name = Faker::Lorem.words.first.titlecase
   		subject.code = subject.name[0..1].upcase
   	end
 
     factory :rand_subject_with_courses do
       after_build do |subject|
-        subject.code = subject.name[0..1].upcase
         subject.courses << FactoryGirl.build(:rand_course, :subject => subject)
       end
     end
