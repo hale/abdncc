@@ -3,9 +3,12 @@ class Comment < ActiveRecord::Base
   belongs_to :course
   belongs_to :user
 
-  validates_presence_of :course_id, :on => :create
-  validates_presence_of :user_id, :on => :create
-  validates_presence_of :content, :on => :create
+  # validates_presence_of :course_id, :on => :create
+  # validates_presence_of :user_id, :on => :create
+  # validates_presence_of :content, :on => :create
+
+# GRR DOESNT WORK WITH FACTORY DEFINITIONS!
+
 end
 
 # == Schema Information

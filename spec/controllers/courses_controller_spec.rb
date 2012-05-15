@@ -2,11 +2,9 @@ require 'spec_helper'
 
 describe CoursesController do
   let(:course) { FactoryGirl.create(:course) }
-  let(:rand_course) { FactoryGirl.create(:rand_course) }
   subject { course }
 
   before{ course.save }
-  before{ rand_course.save }
 
   describe "GET show" do
 
@@ -29,7 +27,7 @@ describe CoursesController do
     it "assigns matching courses to @courses if params[:query] is present" do
         post :index, :query => course.name
         assigns(:courses).should include(course)
-        assigns(:courses).should_not include(rand_course)
+        assigns(:courses).should_not include( FactoryGirl.create(:course) )
     end
   end
 

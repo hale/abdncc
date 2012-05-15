@@ -59,8 +59,6 @@ describe User do
 				user_full.has_course?( course ).should be_false
 			end
 		end
-
-
 	end
 
 

@@ -4,6 +4,7 @@ describe "Courses" do
   include Helpers
 
   let(:course) { FactoryGirl.create(:course) }
+  let(:course_with_comments) { FactoryGirl.create(:course_with_comments) }
   let(:user) { FactoryGirl.create(:user) }
   before do
     course.save
@@ -91,7 +92,7 @@ describe "Courses" do
     #    BOOKMARKS     it { should have_content "Sign up or log in now to track this ourse for later!"}
 
     describe "course comments" do
-      let(:course_with_comments) { FactoryGirl.create(:rand_course_with_comments) }
+      # let(:course_with_comments) { FactoryGirl.create(:course_with_comments) }
       before { visit course_path course_with_comments }
 
       subject { page }
@@ -174,7 +175,7 @@ describe "Courses" do
     it { should have_selector '.course'}
 
     describe "a course in the list" do
-      subject { page.find(".course") }
+      subject { page }
 
       describe "course attributes" do
         it { should have_content "#{course.name}" }

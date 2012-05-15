@@ -80,7 +80,7 @@ describe "Subjects" do
       it { should have_selector '.subject' }
 
       describe "a subject in the list" do
-        subject { page.find(".subject") }
+        subject { page }
         it { should have_content "#{subj.name}" }
         it { should have_content "#{subj.code}"}
 
